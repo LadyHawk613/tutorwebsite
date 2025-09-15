@@ -1,0 +1,69 @@
+/* ===== Base Styles ===== */
+body {
+  margin: 0;
+  font-family: "Arial Rounded MT Bold", Arial, sans-serif;
+  background-color: #305466; /* dark blue */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* ===== Layout Container ===== */
+.container {
+  display: flex;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* ===== Enter Button ===== */
+.enter-section {
+  flex: 0 0 auto;
+}
+
+.enter-btn {
+  display: block;
+  padding: 2rem 4rem;
+  background-color: #7ee6ff; /* light cyan */
+  border-radius: 50px;
+  color: #ff6a6a; /* coral pink */
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.enter-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ===== Menu ===== */
+.menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #fdf6e3; /* cream background */
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 2px 3px 0 rgba(0,0,0,0.2);
+  transition: background 0.2s;
+}
+
+.menu-item:hover {
+  background: #f3e8d3;
+}
+
+.icon {
+  font-size: 1.3rem;
+}
