@@ -1,8 +1,38 @@
+/* ===== CSS Variables ===== */
+:root {
+  /* Colors */
+  --color-bg: #305466;          /* Page background */
+  --color-enter-bg: #7ee6ff;    /* Enter button background */
+  --color-enter-text: #ff6a6a;  /* Enter button text */
+  --color-menu-bg: #fdf6e3;     /* Menu item background */
+  --color-menu-bg-hover: #f3e8d3; /* Menu hover background */
+  --color-text: #333;           /* General text color */
+  --color-shadow: rgba(0, 0, 0, 0.2);
+
+  /* Fonts & Sizes */
+  --font-main: "Arial Rounded MT Bold", Arial, sans-serif;
+  --enter-font-size: 2rem;
+  --menu-font-size: 1rem;
+  --icon-size: 1.3rem;
+
+  /* Spacing & Layout */
+  --container-gap: 4rem;
+  --enter-padding: 2rem 4rem;
+  --enter-radius: 50px;
+  --menu-gap-row: 1rem;
+  --menu-gap-col: 1.5rem;
+  --menu-padding: 0.8rem 1rem;
+  --menu-radius: 6px;
+  --shadow-x: 2px;
+  --shadow-y: 3px;
+  --shadow-blur: 0;
+}
+
 /* ===== Base Styles ===== */
 body {
   margin: 0;
-  font-family: "Arial Rounded MT Bold", Arial, sans-serif;
-  background-color: #305466; /* dark blue */
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +42,7 @@ body {
 /* ===== Layout Container ===== */
 .container {
   display: flex;
-  gap: 4rem;
+  gap: var(--container-gap);
   align-items: center;
 }
 
@@ -23,11 +53,11 @@ body {
 
 .enter-btn {
   display: block;
-  padding: 2rem 4rem;
-  background-color: #7ee6ff; /* light cyan */
-  border-radius: 50px;
-  color: #ff6a6a; /* coral pink */
-  font-size: 2rem;
+  padding: var(--enter-padding);
+  background-color: var(--color-enter-bg);
+  border-radius: var(--enter-radius);
+  color: var(--color-enter-text);
+  font-size: var(--enter-font-size);
   font-weight: bold;
   text-decoration: none;
   text-align: center;
@@ -42,28 +72,28 @@ body {
 .menu {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem 1.5rem;
+  gap: var(--menu-gap-row) var(--menu-gap-col);
 }
 
 .menu-item {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: #fdf6e3; /* cream background */
-  border-radius: 6px;
-  padding: 0.8rem 1rem;
-  font-size: 1rem;
+  background: var(--color-menu-bg);
+  border-radius: var(--menu-radius);
+  padding: var(--menu-padding);
+  font-size: var(--menu-font-size);
   font-weight: bold;
   text-decoration: none;
-  color: #333;
-  box-shadow: 2px 3px 0 rgba(0,0,0,0.2);
+  color: var(--color-text);
+  box-shadow: var(--shadow-x) var(--shadow-y) var(--shadow-blur) var(--color-shadow);
   transition: background 0.2s;
 }
 
 .menu-item:hover {
-  background: #f3e8d3;
+  background: var(--color-menu-bg-hover);
 }
 
 .icon {
-  font-size: 1.3rem;
+  font-size: var(--icon-size);
 }
