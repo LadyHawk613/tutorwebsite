@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polar Curves & Functions — AP Precalculus Review</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left:'$$', right:'$$', display:true},
+      {left:'\\(', right:'\\)', display:false}
+    ],
+    throwOnError: false
+  });"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f4f1ec;
+    --surface: #fffdf9;
+    --surface2: #f0ede6;
+    --border: #e0dbd0;
+    --border2: #c8c2b4;
+    --text: #1a1714;
+    --text2: #5a5550;
+    --text3: #9a9590;
+    --accent: #1a4f7a;
+    --accent-light: #e8f2fa;
+    --accent2: #2d6b4a;
+    --accent2-light: #e4f2eb;
+    --amber: #8b5e00;
+    --amber-light: #fdf2dc;
+    --coral: #7a2a1a;
+    --coral-light: #faeae6;
+    --purple: #3d2d7a;
+    --purple-light: #eeebfa;
+    --correct: #2d6b4a;
+    --correct-bg: #e4f2eb;
+    --wrong: #7a2a1a;
+    --wrong-bg: #faeae6;
+    --radius: 10px;
+    --radius-sm: 6px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.06);
+  }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .katex { font-size: 1em; }
+  .katex-display { margin: 0.5em 0; overflow-x: auto; overflow-y: hidden; }
+  .katex-display > .katex { text-align: left; }
+
+  .formula-block {
+    background: var(--surface2);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 10px 14px;
+    margin: 8px 0;
+    overflow-x: auto;
+  }
+  .formula-block .katex-display { margin: 0; }
+
+  .header {
+    background: var(--accent);
+    color: #fff;
+    padding: 2.5rem 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute; top: -40px; right: -40px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .header::after {
+    content: '';
+    position: absolute; top: 20px; right: 20px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .header-inner { max-width: 880px; margin: 0 auto; position: relative; z-index: 1; }
+  .header-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 8px; }
+  .header h1 { font-family: 'DM Serif Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 400; line-height: 1.1; margin-bottom: 8px; }
+  .header p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 2rem; font-weight: 300; }
+
+  .tab-nav { display: flex; gap: 2px; }
+  .tab-btn {
+    padding: 10px 22px;
+    background: rgba(255,255,255,0.08);
+    border: none; color: rgba(255,255,255,0.6);
+    font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 500;
+    cursor: pointer; border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    transition: all 0.18s; letter-spacing: 0.01em;
+  }
+  .tab-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.85); }
+  .tab-btn.active { background: var(--bg); color: var(--accent); font-weight: 600; }
+
+  .main { max-width: 880px; margin: 0 auto; padding: 2rem; }
+
+  .section { display: none; animation: fadeIn 0.2s ease; }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; } }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 1.25rem 1.5rem;
+    margin-bottom: 1rem; box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px; font-weight: 400; color: var(--text);
+    margin-bottom: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+
+  .note { font-size: 13.5px; color: var(--text2); line-height: 1.7; margin-top: 8px; }
+  .warning { font-size: 13px; color: var(--amber); background: var(--amber-light); border-radius: var(--radius-sm); padding: 8px 12px; margin-top: 10px; }
+
+  .label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; margin-top: 12px; }
+
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 11.5px; font-weight: 500; }
+  .badge-blue   { background: var(--accent-light);  color: var(--accent);  }
+  .badge-green  { background: var(--accent2-light); color: var(--accent2); }
+  .badge-amber  { background: var(--amber-light);   color: var(--amber);   }
+  .badge-coral  { background: var(--coral-light);   color: var(--coral);   }
+  .badge-purple { background: var(--purple-light);  color: var(--purple);  }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .two-col { grid-template-columns: 1fr; } }
+
+  .rule-row {
+    display: flex; gap: 14px; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .rule-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .rule-name { min-width: 130px; font-size: 13px; font-weight: 600; color: var(--accent); padding-top: 2px; }
+  .rule-name .katex { font-size: 0.88em; }
+  .rule-desc { font-size: 13.5px; color: var(--text2); line-height: 1.6; }
+  .rule-desc .katex { font-size: 0.92em; }
+
+  .ref-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .ref-table th { text-align: center; padding: 8px 10px; color: var(--text2); font-weight: 600; font-size: 12px; border-bottom: 1px solid var(--border2); background: var(--surface2); }
+  .ref-table th:first-child { text-align: left; }
+  .ref-table td { text-align: center; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .ref-table td:first-child { text-align: left; font-weight: 600; }
+  .ref-table tr:last-child td { border-bottom: none; }
+  .ref-table .katex { font-size: 0.88em; }
+
+  .curve-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; }
+  @media (max-width: 600px) { .curve-grid { grid-template-columns: 1fr 1fr; } }
+  .curve-item { text-align: center; }
+  .curve-item canvas { width: 100%; aspect-ratio: 1; border-radius: var(--radius-sm); background: var(--surface2); display: block; }
+  .curve-item-formula { font-size: 12.5px; color: var(--text2); margin-top: 6px; min-height: 24px; }
+  .curve-item-formula .katex { font-size: 0.9em; }
+  .curve-item-name { font-size: 12px; font-weight: 600; color: var(--text); margin-top: 2px; }
+
+  #coordCanvas { width: 100%; height: 170px; border-radius: var(--radius-sm); background: var(--surface2); display: block; margin-top: 12px; }
+
+  .score-bar {
+    background: var(--accent); color: #fff; border-radius: var(--radius);
+    padding: 1rem 1.5rem; display: flex; gap: 2rem; align-items: center;
+    margin-bottom: 1.5rem; box-shadow: var(--shadow-md);
+  }
+  .score-item { text-align: center; }
+  .score-num { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1; }
+  .score-lbl { font-size: 11px; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+  .reset-btn {
+    margin-left: auto; background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2); color: #fff;
+    font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
+    padding: 7px 16px; border-radius: var(--radius-sm); cursor: pointer; transition: background 0.15s;
+  }
+  .reset-btn:hover { background: rgba(255,255,255,0.22); }
+
+  .q-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
+  .q-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 10px; }
+  .q-num { font-size: 12px; color: var(--text3); font-weight: 500; }
+  .q-text { font-size: 14.5px; color: var(--text); line-height: 1.7; margin-bottom: 14px; }
+  .q-text .katex { font-size: 0.95em; }
+  .q-options { display: flex; flex-direction: column; gap: 7px; }
+  .q-option {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 13px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+    font-size: 13.5px; color: var(--text); cursor: pointer; transition: all 0.14s;
+    background: transparent; text-align: left; font-family: 'Outfit', sans-serif;
+    line-height: 1.6; width: 100%;
+  }
+  .q-option:hover { background: var(--surface2); border-color: var(--border2); }
+  .q-option.correct { background: var(--correct-bg); border-color: var(--correct); color: var(--correct); }
+  .q-option.wrong   { background: var(--wrong-bg);   border-color: var(--wrong);   color: var(--wrong);   }
+  .q-option .katex  { font-size: 0.9em; }
+  .q-option-letter  { font-weight: 700; min-width: 18px; font-size: 13px; padding-top: 2px; flex-shrink: 0; }
+  .explanation {
+    margin-top: 12px; padding: 10px 14px; border-radius: var(--radius-sm);
+    background: var(--accent-light); color: var(--accent);
+    font-size: 13px; line-height: 1.65; display: none;
+    border-left: 3px solid var(--accent);
+  }
+  .explanation .katex { font-size: 0.9em; }
+
+  .section-heading { font-family: 'DM Serif Display', serif; font-size: 22px; font-weight: 400; color: var(--text); margin-bottom: 1.25rem; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .subsection-heading { font-size: 13px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text3); margin: 1.5rem 0 0.75rem; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-tag">AP Precalculus &nbsp;·&nbsp; Exam Review</div>
+    <h1>Polar Curves &amp; Functions</h1>
+    <p>Complete exam review — formulas, curve types, and practice questions</p>
+    <nav class="tab-nav">
+      <button class="tab-btn active" onclick="showTab('basics',this)">Basics</button>
+      <button class="tab-btn" onclick="showTab('curves',this)">Curves</button>
+      <button class="tab-btn" onclick="showTab('formulas',this)">Formulas</button>
+      <button class="tab-btn" onclick="showTab('practice',this)">Practice</button>
+    </nav>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ========== BASICS ========== -->
+<div id="basics" class="section active">
+  <h2 class="section-heading">Polar coordinate system</h2>
+
+  <div class="card">
+    <div class="card-title">What are polar coordinates?</div>
+    <p class="note">
+      A point is described as \((r,\,\theta)\) where \(r\) is the distance from the <em>pole</em> (origin)
+      and \(\theta\) is the angle measured counterclockwise from the <em>polar axis</em> (positive \(x\)-axis).
+    </p>
+    <canvas id="coordCanvas"></canvas>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Converting between systems</div>
+    <div class="two-col">
+      <div>
+        <div class="label">Polar → Rectangular</div>
+        <div class="formula-block">$$x = r\cos\theta$$</div>
+        <div class="formula-block">$$y = r\sin\theta$$</div>
+      </div>
+      <div>
+        <div class="label">Rectangular → Polar</div>
+        <div class="formula-block">$$r = \sqrt{x^2 + y^2}$$</div>
+        <div class="formula-block">$$\theta = \arctan\!\left(\frac{y}{x}\right)$$</div>
+      </div>
+    </div>
+    <div class="warning">⚠ When using \(\theta = \arctan(y/x)\), always check the quadrant. Add \(\pi\) if the point is in Q2 or Q3.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Negative \(r\) values</div>
+    <p class="note">If \(r < 0\), the point is plotted in the direction <em>opposite</em> to \(\theta\).</p>
+    <div class="formula-block">$$(r,\,\theta) \;=\; (-r,\,\theta+\pi)$$</div>
+    <p class="note">Example: \(\bigl(-3,\,\tfrac{\pi}{4}\bigr)\) is the same point as \(\bigl(3,\,\tfrac{5\pi}{4}\bigr)\).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Multiple representations</div>
+    <p class="note">Every point has infinitely many polar representations.</p>
+    <div class="formula-block">$$(r,\,\theta) \;=\; (r,\,\theta + 2\pi k)\quad\text{for any integer }k$$</div>
+    <div class="formula-block">$$(r,\,\theta) \;=\; (-r,\,\theta + \pi + 2\pi k)$$</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Symmetry tests</div>
+    <div class="rule-row">
+      <div class="rule-name">Polar axis</div>
+      <div class="rule-desc">Replace \(\theta\) with \(-\theta\). If the equation is unchanged, the graph is symmetric about the polar axis (\(x\)-axis).</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">\(\theta = \dfrac{\pi}{2}\)</div>
+      <div class="rule-desc">Replace \(\theta\) with \(\pi - \theta\). If unchanged, the graph is symmetric about the line \(\theta = \tfrac{\pi}{2}\) (\(y\)-axis).</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">Pole</div>
+      <div class="rule-desc">Replace \(r\) with \(-r\). If unchanged, the graph is symmetric about the pole (origin).</div>
+    </div>
+    <p class="note" style="margin-top:10px;">These tests are <em>sufficient but not necessary</em> — failing a test does not guarantee the graph lacks that symmetry.</p>
+  </div>
+</div>
+
+<!-- ========== CURVES ========== -->
+<div id="curves" class="section">
+  <h2 class="section-heading">Curve types you need to know</h2>
+
+  <div class="card">
+    <div class="card-title">Circles</div>
+    <div class="two-col">
+      <div>
+        <div class="label">Centered at pole</div>
+        <div class="formula-block">$$r = a$$</div>
+        <p class="note">Circle of radius \(|a|\) centered at the origin.</p>
+      </div>
+      <div>
+        <div class="label">Passing through pole</div>
+        <div class="formula-block">$$r = 2a\cos\theta \quad\text{or}\quad r = 2a\sin\theta$$</div>
+        <p class="note">Diameter \(= 2|a|\). Center on \(x\)-axis (cos) or \(y\)-axis (sin).</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Limaçons</div>
+    <div class="formula-block">$$r = a \pm b\cos\theta \qquad\text{or}\qquad r = a \pm b\sin\theta$$</div>
+    <p class="note" style="margin-bottom:10px;">Shape depends on the ratio \(a/b\) (assume \(a,b>0\)):</p>
+    <div class="rule-row">
+      <div class="rule-name">\(\dfrac{a}{b} < 1\)</div>
+      <div class="rule-desc"><strong>Inner loop</strong> — has a loop inside. The curve passes through the pole twice.</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">\(\dfrac{a}{b} = 1\)</div>
+      <div class="rule-desc"><strong>Cardioid</strong> — heart-shaped, passes through the pole exactly once.</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">\(1 < \dfrac{a}{b} < 2\)</div>
+      <div class="rule-desc"><strong>Dimpled limaçon</strong> — has an indentation but no inner loop.</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">\(\dfrac{a}{b} \ge 2\)</div>
+      <div class="rule-desc"><strong>Convex limaçon</strong> — smooth oval shape, no dimple or loop.</div>
+    </div>
+    <p class="note" style="margin-top:10px;">\(\cos\theta\) version → oriented along \(x\)-axis &nbsp;|&nbsp; \(\sin\theta\) version → oriented along \(y\)-axis</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Rose curves</div>
+    <div class="formula-block">$$r = a\cos(n\theta) \qquad\text{or}\qquad r = a\sin(n\theta)$$</div>
+    <div class="rule-row">
+      <div class="rule-name">\(n\) odd</div>
+      <div class="rule-desc"><strong>\(n\) petals</strong>, each of length \(|a|\). One petal lies along the axis.</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">\(n\) even</div>
+      <div class="rule-desc"><strong>\(2n\) petals</strong>, each of length \(|a|\). Petals appear between and on the axes.</div>
+    </div>
+    <p class="note" style="margin-top:10px;">Petal tip length is always \(|a|\) regardless of \(n\). Period is \(\pi\) when \(n\) is odd; \(2\pi\) when \(n\) is even.</p>
+    <div class="formula-block">$$r = 3\cos(2\theta) \;\Rightarrow\; 4\text{ petals, each length }3$$</div>
+    <div class="formula-block">$$r = 2\sin(3\theta) \;\Rightarrow\; 3\text{ petals, each length }2$$</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Lemniscates</div>
+    <div class="formula-block">$$r^2 = a^2\cos(2\theta) \qquad\text{or}\qquad r^2 = a^2\sin(2\theta)$$</div>
+    <p class="note">Figure-eight shaped curve. Only exists where the right side \(\ge 0\).</p>
+    <div class="two-col" style="margin-top:10px;">
+      <div>
+        <div class="formula-block">$$r^2 = a^2\cos(2\theta)$$</div>
+        <p class="note">Lobes along the \(x\)-axis (polar axis)</p>
+      </div>
+      <div>
+        <div class="formula-block">$$r^2 = a^2\sin(2\theta)$$</div>
+        <p class="note">Lobes along \(\theta = \tfrac{\pi}{4}\) and \(\theta = \tfrac{5\pi}{4}\)</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Archimedean spiral</div>
+    <div class="formula-block">$$r = a\theta$$</div>
+    <p class="note">As \(\theta\) increases, \(r\) increases proportionally. Each full revolution adds \(2\pi a\) to the radius.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Lines &amp; special curves</div>
+    <div class="rule-row">
+      <div class="rule-name">Horizontal</div>
+      <div class="rule-desc">\(r\sin\theta = k \;\Rightarrow\; y = k\)</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">Vertical</div>
+      <div class="rule-desc">\(r\cos\theta = k \;\Rightarrow\; x = k\)</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">Through pole</div>
+      <div class="rule-desc">\(\theta = c\) — straight line at constant angle through the origin</div>
+    </div>
+  </div>
+
+  <div class="subsection-heading">Visual gallery</div>
+  <div class="curve-grid" id="curveGallery"></div>
+</div>
+
+<!-- ========== FORMULAS ========== -->
+<div id="formulas" class="section">
+  <h2 class="section-heading">Formulas &amp; reference</h2>
+
+  <div class="card">
+    <div class="card-title">Key angle values to memorize</div>
+    <div style="overflow-x:auto">
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>\(\theta\)</th>
+            <th>\(0\)</th>
+            <th>\(\dfrac{\pi}{6}\)</th>
+            <th>\(\dfrac{\pi}{4}\)</th>
+            <th>\(\dfrac{\pi}{3}\)</th>
+            <th>\(\dfrac{\pi}{2}\)</th>
+            <th>\(\pi\)</th>
+            <th>\(\dfrac{3\pi}{2}\)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>\(\cos\theta\)</td>
+            <td>\(1\)</td>
+            <td>\(\dfrac{\sqrt{3}}{2}\)</td>
+            <td>\(\dfrac{\sqrt{2}}{2}\)</td>
+            <td>\(\dfrac{1}{2}\)</td>
+            <td>\(0\)</td>
+            <td>\(-1\)</td>
+            <td>\(0\)</td>
+          </tr>
+          <tr>
+            <td>\(\sin\theta\)</td>
+            <td>\(0\)</td>
+            <td>\(\dfrac{1}{2}\)</td>
+            <td>\(\dfrac{\sqrt{2}}{2}\)</td>
+            <td>\(\dfrac{\sqrt{3}}{2}\)</td>
+            <td>\(1\)</td>
+            <td>\(0\)</td>
+            <td>\(-1\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Finding intercepts &amp; zeros</div>
+    <div class="rule-row">
+      <div class="rule-name">Zeros (pole)</div>
+      <div class="rule-desc">Set \(r = 0\) and solve for \(\theta\). These are angles where the curve passes through the origin.</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">Axis crossings</div>
+      <div class="rule-desc">Evaluate \(r\) at \(\theta = 0,\;\tfrac{\pi}{2},\;\pi,\;\tfrac{3\pi}{2}\). The \(r\) values give distances on each axis.</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name">Maximum \(|r|\)</div>
+      <div class="rule-desc">Find where \(|\cos(n\theta)| = 1\) or \(|\sin(n\theta)| = 1\). Maximum petal length \(= |a|\).</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Rate of change in polar</div>
+    <p class="note">Treat \(r\) as a function of \(\theta\) and compute \(\dfrac{dr}{d\theta}\) to analyze how the distance from the pole changes.</p>
+    <div class="formula-block">$$\frac{dr}{d\theta} > 0 \;\Rightarrow\; r\text{ increasing (moving away from pole)}$$</div>
+    <div class="formula-block">$$\frac{dr}{d\theta} < 0 \;\Rightarrow\; r\text{ decreasing (moving toward pole)}$$</div>
+    <p class="note" style="margin-top:10px;"><strong>Example:</strong> For \(r = 2 + 3\cos\theta\), we have \(\dfrac{dr}{d\theta} = -3\sin\theta\). So \(r\) is increasing when \(\sin\theta < 0\), i.e., \(\theta \in (\pi,\,2\pi)\).</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Graphing strategy (step by step)</div>
+    <div class="rule-row"><div class="rule-name">Step 1</div><div class="rule-desc">Identify curve type from the equation form (cardioid, rose, limaçon, etc.).</div></div>
+    <div class="rule-row"><div class="rule-name">Step 2</div><div class="rule-desc">Find key values: zeros (\(r=0\)), maximum \(r\), and axis intercepts.</div></div>
+    <div class="rule-row"><div class="rule-name">Step 3</div><div class="rule-desc">Apply symmetry tests to reduce the number of points needed.</div></div>
+    <div class="rule-row"><div class="rule-name">Step 4</div><div class="rule-desc">Build a table of \((\theta,\, r)\) values for \(\theta \in [0,\,2\pi]\), then plot on polar axes.</div></div>
+    <div class="rule-row"><div class="rule-name">Step 5</div><div class="rule-desc">Verify petal count and orientation match expected values for the curve type.</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quick identification cheat sheet</div>
+    <div class="rule-row">
+      <div class="rule-name" style="color:var(--accent)">\(r = a\)</div>
+      <div class="rule-desc">Circle of radius \(|a|\) centered at the pole</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name" style="color:var(--accent)">\(r = 2a\cos\theta\)</div>
+      <div class="rule-desc">Circle through origin, radius \(|a|\), center at \((a,\,0)\)</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name" style="color:var(--accent2)">\(r = a \pm a\cos\theta\)</div>
+      <div class="rule-desc">Cardioid (\(a/b = 1\))</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name" style="color:var(--accent2)">\(r = a \pm b\cos\theta\)</div>
+      <div class="rule-desc">Limaçon — check \(a/b\) ratio for inner loop, dimple, or convex</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name" style="color:var(--purple)">\(r = a\cos(n\theta)\)</div>
+      <div class="rule-desc">Rose — \(n\) petals if \(n\) odd; \(2n\) petals if \(n\) even</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name" style="color:var(--coral)">\(r^2 = a^2\cos(2\theta)\)</div>
+      <div class="rule-desc">Lemniscate, figure-eight along \(x\)-axis</div>
+    </div>
+    <div class="rule-row">
+      <div class="rule-name" style="color:var(--amber)">\(r = a\theta\)</div>
+      <div class="rule-desc">Archimedean spiral</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PRACTICE ========== -->
+<div id="practice" class="section">
+  <h2 class="section-heading">Practice questions</h2>
+  <div class="score-bar">
+    <div class="score-item"><div class="score-num" id="scoreCorrect">0</div><div class="score-lbl">Correct</div></div>
+    <div class="score-item"><div class="score-num" id="scoreAttempted">0</div><div class="score-lbl">Attempted</div></div>
+    <div class="score-item"><div class="score-num" id="scorePercent">—</div><div class="score-lbl">Score</div></div>
+    <button class="reset-btn" onclick="resetQuiz()">Reset quiz</button>
+  </div>
+  <div id="questionList"></div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+/* ===== TABS ===== */
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'curves') setTimeout(drawGallery, 80);
+}
+
+/* ===== COORD CANVAS ===== */
+function drawCoordCanvas() {
+  const c = document.getElementById('coordCanvas');
+  if (!c) return;
+  const dpr = window.devicePixelRatio || 1;
+  const W = c.offsetWidth, H = 170;
+  c.width = W * dpr; c.height = H * dpr;
+  const ctx = c.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const cx = W/2, cy = H/2;
+  ctx.strokeStyle = '#c8c2b4'; ctx.lineWidth = 0.7;
+  for (let r = 25; r <= 75; r += 25) { ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke(); }
+  for (let a = 0; a < Math.PI*2; a += Math.PI/6) {
+    ctx.beginPath(); ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + 82*Math.cos(a), cy + 82*Math.sin(a)); ctx.stroke();
+  }
+  ctx.strokeStyle = '#9a9590'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(10, cy); ctx.lineTo(W-10, cy); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(cx, H-8); ctx.lineTo(cx, 8); ctx.stroke();
+  ctx.fillStyle = '#9a9590'; ctx.font = '11px Outfit, sans-serif';
+  ctx.fillText('polar axis', W - 72, cy - 7);
+  ctx.fillText('\u03b8 = \u03c0/2', cx + 5, 17);
+  const r = 65, th = Math.PI/5;
+  const px = cx + r*Math.cos(-th), py = cy + r*Math.sin(-th);
+  ctx.strokeStyle = '#1a4f7a'; ctx.lineWidth = 1.8;
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
+  ctx.strokeStyle = '#1a4f7a'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(cx, cy, 28, 0, -th, true); ctx.stroke();
+  ctx.fillStyle = '#1a4f7a'; ctx.font = 'bold 12px Outfit';
+  ctx.fillText('\u03b8', cx + 25, cy - 8);
+  ctx.beginPath(); ctx.arc(px, py, 4, 0, Math.PI*2);
+  ctx.fillStyle = '#1a4f7a'; ctx.fill();
+  ctx.font = '12px Outfit'; ctx.fillStyle = '#1a4f7a';
+  ctx.fillText('P(r, \u03b8)', px + 7, py - 6);
+  ctx.fillStyle = '#5a5550'; ctx.font = '11px Outfit';
+  ctx.fillText('r', (cx+px)/2 - 14, (cy+py)/2 - 4);
+}
+
+/* ===== CURVE GALLERY ===== */
+const curveDefs = [
+  { label:'Cardioid',           latex:'r = 2(1+\\cos\\theta)',    fn: t => 2*(1+Math.cos(t)),                                   color:'#1a4f7a', double:false },
+  { label:'Rose (4 petals)',    latex:'r = 3\\cos(2\\theta)',      fn: t => 3*Math.cos(2*t),                                    color:'#2d6b4a', double:false },
+  { label:'Inner loop limaçon',latex:'r = 1 + 2\\cos\\theta',    fn: t => 1+2*Math.cos(t),                                    color:'#3d2d7a', double:false },
+  { label:'Lemniscate',         latex:'r^2 = 9\\cos(2\\theta)',   fn: t => { const v=9*Math.cos(2*t); return v>=0?Math.sqrt(v):null; }, color:'#7a2a1a', double:true },
+  { label:'Rose (3 petals)',    latex:'r = 2\\sin(3\\theta)',      fn: t => 2*Math.sin(3*t),                                    color:'#8b5e00', double:false },
+  { label:'Convex limaçon',    latex:'r = 4 + 2\\cos\\theta',    fn: t => 4+2*Math.cos(t),                                    color:'#2d6b4a', double:false },
+];
+
+let galleryDrawn = false;
+function drawGallery() {
+  if (galleryDrawn) return;
+  const g = document.getElementById('curveGallery');
+  g.innerHTML = '';
+  curveDefs.forEach(def => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'curve-item';
+    const canvas = document.createElement('canvas');
+    canvas.width = 180; canvas.height = 180;
+    const fDiv = document.createElement('div');
+    fDiv.className = 'curve-item-formula';
+    katex.render(def.latex, fDiv, { throwOnError: false, displayMode: false });
+    const nDiv = document.createElement('div');
+    nDiv.className = 'curve-item-name'; nDiv.textContent = def.label;
+    wrapper.appendChild(canvas); wrapper.appendChild(fDiv); wrapper.appendChild(nDiv);
+    g.appendChild(wrapper);
+
+    const ctx = canvas.getContext('2d');
+    const S = 180, cx = S/2, cy = S/2, scale = 19;
+    ctx.strokeStyle = '#d8d3cb'; ctx.lineWidth = 0.5;
+    for (let r = scale; r <= S/2; r += scale) { ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI*2); ctx.stroke(); }
+    ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(S, cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, S); ctx.stroke();
+    const draw = sign => {
+      ctx.strokeStyle = def.color; ctx.lineWidth = 2;
+      ctx.beginPath(); let first = true;
+      for (let i = 0; i <= 900; i++) {
+        const th = i/900 * Math.PI * 2;
+        const rv = def.fn(th);
+        if (rv === null) { first = true; continue; }
+        const x = cx + sign*rv*Math.cos(th)*scale;
+        const y = cy - sign*rv*Math.sin(th)*scale;
+        if (first) { ctx.moveTo(x, y); first = false; } else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    };
+    draw(1);
+    if (def.double) draw(-1);
+  });
+  galleryDrawn = true;
+}
+
+/* ===== PRACTICE ===== */
+const questions = [
+  {
+    text: 'Which of the following polar equations represents a cardioid?',
+    topic: 'Curve ID', badge: 'badge-blue',
+    options: ['\\(r = 3\\)', '\\(r = 2 + 3\\cos\\theta\\)', '\\(r = 2 + 2\\sin\\theta\\)', '\\(r = 4\\cos(2\\theta)\\)'],
+    answer: 2,
+    explanation: 'A cardioid occurs when \\(a/b = 1\\). In \\(r = 2 + 2\\sin\\theta\\), we have \\(a = b = 2\\), so \\(a/b = 1\\) — this is a cardioid. Choice B has \\(a/b = 2/3 < 1\\) (inner loop limaçon), and D is a rose curve.'
+  },
+  {
+    text: 'The polar curve \\(r = 5\\cos(4\\theta)\\) is a rose curve. How many petals does it have?',
+    topic: 'Rose curves', badge: 'badge-green',
+    options: ['4 petals', '5 petals', '8 petals', '10 petals'],
+    answer: 2,
+    explanation: 'For \\(r = a\\cos(n\\theta)\\), when \\(n\\) is even the rose has \\(2n\\) petals. Here \\(n = 4\\) (even), so there are \\(2(4) = 8\\) petals, each of length \\(|a| = 5\\).'
+  },
+  {
+    text: 'The point \\(\\bigl(4,\\,\\tfrac{\\pi}{3}\\bigr)\\) in polar coordinates corresponds to which rectangular point?',
+    topic: 'Conversion', badge: 'badge-amber',
+    options: ['\\(\\bigl(2,\\;2\\sqrt{3}\\bigr)\\)', '\\(\\bigl(2\\sqrt{3},\\;2\\bigr)\\)', '\\(\\bigl(4,\\;\\tfrac{\\pi}{3}\\bigr)\\)', '\\(\\bigl(\\sqrt{3},\\;1\\bigr)\\)'],
+    answer: 0,
+    explanation: '\\(x = r\\cos\\theta = 4\\cos\\bigl(\\tfrac{\\pi}{3}\\bigr) = 4\\cdot\\tfrac{1}{2} = 2\\). \\(\\quad y = r\\sin\\theta = 4\\sin\\bigl(\\tfrac{\\pi}{3}\\bigr) = 4\\cdot\\tfrac{\\sqrt{3}}{2} = 2\\sqrt{3}\\). The rectangular point is \\(\\bigl(2,\\;2\\sqrt{3}\\bigr)\\).'
+  },
+  {
+    text: 'For the limaçon \\(r = 3 + 5\\cos\\theta\\), which description is correct?',
+    topic: 'Limaçons', badge: 'badge-purple',
+    options: ['Cardioid, symmetric about \\(y\\)-axis', 'Inner loop limaçon, symmetric about \\(x\\)-axis', 'Dimpled limaçon, symmetric about \\(x\\)-axis', 'Convex limaçon, symmetric about \\(y\\)-axis'],
+    answer: 1,
+    explanation: 'Here \\(a = 3\\), \\(b = 5\\), so \\(a/b = 3/5 < 1\\) — this produces an inner loop limaçon. Since the equation uses \\(\\cos\\theta\\), it is symmetric about the polar axis (\\(x\\)-axis).'
+  },
+  {
+    text: 'Which polar equation represents a circle of radius 3 centered at the origin?',
+    topic: 'Circles', badge: 'badge-blue',
+    options: ['\\(r = 3\\cos\\theta\\)', '\\(r = 3\\sin\\theta\\)', '\\(r = 3\\)', '\\(r^2 = 9\\cos(2\\theta)\\)'],
+    answer: 2,
+    explanation: '\\(r = a\\) is a circle of radius \\(|a|\\) centered at the pole. So \\(r = 3\\) gives a circle of radius 3. \\(r = 3\\cos\\theta\\) is a circle of radius \\(3/2\\) centered at \\((3/2,\\,0)\\). \\(r^2 = 9\\cos(2\\theta)\\) is a lemniscate.'
+  },
+  {
+    text: 'At what value of \\(\\theta \\in [0,\\,2\\pi]\\) does the cardioid \\(r = 1 + \\cos\\theta\\) pass through the pole?',
+    topic: 'Zeros', badge: 'badge-green',
+    options: ['\\(\\theta = 0\\) only', '\\(\\theta = \\pi\\) only', '\\(\\theta = \\tfrac{\\pi}{2}\\) and \\(\\tfrac{3\\pi}{2}\\)', '\\(\\theta = 0\\) and \\(2\\pi\\)'],
+    answer: 1,
+    explanation: 'Set \\(r = 0\\): \\(1 + \\cos\\theta = 0 \\Rightarrow \\cos\\theta = -1 \\Rightarrow \\theta = \\pi\\). The cardioid passes through the pole only at \\(\\theta = \\pi\\) in \\([0,\\,2\\pi]\\).'
+  },
+  {
+    text: 'For the curve \\(r = 2 - 3\\cos\\theta\\), on which interval is \\(r\\) increasing as a function of \\(\\theta\\)?',
+    topic: 'Rate of change', badge: 'badge-amber',
+    options: ['\\((0,\\,\\pi)\\)', '\\((\\pi,\\,2\\pi)\\)', '\\(\\bigl(0,\\,\\tfrac{\\pi}{2}\\bigr)\\) and \\(\\bigl(\\tfrac{3\\pi}{2},\\,2\\pi\\bigr)\\)', '\\(\\bigl(\\tfrac{\\pi}{2},\\,\\tfrac{3\\pi}{2}\\bigr)\\)'],
+    answer: 0,
+    explanation: '\\(\\dfrac{dr}{d\\theta} = 3\\sin\\theta\\). For \\(r\\) to increase we need \\(\\dfrac{dr}{d\\theta} > 0\\), so \\(\\sin\\theta > 0\\). This holds on \\((0,\\,\\pi)\\).'
+  },
+  {
+    text: 'The polar curve \\(r^2 = 16\\sin(2\\theta)\\) is a lemniscate. Where are its lobes oriented?',
+    topic: 'Lemniscates', badge: 'badge-purple',
+    options: ['Along the \\(x\\)-axis', 'Along the \\(y\\)-axis', 'Along \\(\\theta = \\tfrac{\\pi}{4}\\) and \\(\\theta = \\tfrac{5\\pi}{4}\\)', 'Along \\(\\theta = \\tfrac{\\pi}{3}\\) and \\(\\theta = \\tfrac{4\\pi}{3}\\)'],
+    answer: 2,
+    explanation: '\\(r^2 = a^2\\sin(2\\theta)\\) has lobes along \\(\\theta = \\tfrac{\\pi}{4}\\) and \\(\\theta = \\tfrac{5\\pi}{4}\\). Contrast with \\(r^2 = a^2\\cos(2\\theta)\\), whose lobes lie along the \\(x\\)-axis.'
+  },
+  {
+    text: 'Which of the following is an alternate polar representation of the point \\(\\bigl(3,\\,\\tfrac{\\pi}{4}\\bigr)\\)?',
+    topic: 'Representations', badge: 'badge-coral',
+    options: ['\\(\\bigl(-3,\\,\\tfrac{\\pi}{4}\\bigr)\\)', '\\(\\bigl(3,\\,-\\tfrac{7\\pi}{4}\\bigr)\\)', '\\(\\bigl(3,\\,\\tfrac{9\\pi}{4}\\bigr)\\)', 'Both B and C'],
+    answer: 3,
+    explanation: '\\(\\bigl(3,\\,\\tfrac{9\\pi}{4}\\bigr) = \\bigl(3,\\,\\tfrac{\\pi}{4}+2\\pi\\bigr)\\) — same point. \\(\\bigl(3,\\,-\\tfrac{7\\pi}{4}\\bigr) = \\bigl(3,\\,\\tfrac{\\pi}{4}-2\\pi\\bigr)\\) — also the same point. Both B and C are valid. Note: \\(\\bigl(-3,\\,\\tfrac{\\pi}{4}\\bigr)\\) is actually the point \\(\\bigl(3,\\,\\tfrac{5\\pi}{4}\\bigr)\\).'
+  },
+  {
+    text: 'The polar equation \\(r = 4\\cos\\theta\\) represents a circle. What is the center in rectangular coordinates?',
+    topic: 'Conversion', badge: 'badge-blue',
+    options: ['\\((0,\\;2)\\)', '\\((4,\\;0)\\)', '\\((2,\\;0)\\)', '\\((0,\\;4)\\)'],
+    answer: 2,
+    explanation: 'Multiply both sides by \\(r\\): \\(r^2 = 4r\\cos\\theta \\Rightarrow x^2+y^2 = 4x \\Rightarrow (x-2)^2+y^2 = 4\\). Center is \\((2,\\,0)\\), radius \\(= 2\\).'
+  }
+];
+
+let attempted = new Set(), correct = new Set();
+
+function renderEl(el) {
+  renderMathInElement(el, {
+    delimiters: [{left:'\\(',right:'\\)',display:false},{left:'$$',right:'$$',display:true}],
+    throwOnError: false
+  });
+}
+
+function renderQuestions() {
+  const container = document.getElementById('questionList');
+  container.innerHTML = '';
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'q-card';
+    const optHTML = q.options.map((o, j) => `
+      <button class="q-option" id="opt_${i}_${j}" onclick="answer(${i},${j})">
+        <span class="q-option-letter">${'ABCD'[j]}</span>
+        <span class="opt-label" id="optlabel_${i}_${j}">${o}</span>
+      </button>`).join('');
+    card.innerHTML = `
+      <div class="q-meta">
+        <span class="badge ${q.badge}">${q.topic}</span>
+        <span class="q-num">Question ${i+1} of ${questions.length}</span>
+      </div>
+      <div class="q-text" id="qtext_${i}">${q.text}</div>
+      <div class="q-options">${optHTML}</div>
+      <div class="explanation" id="exp_${i}"></div>`;
+    container.appendChild(card);
+    renderEl(card.querySelector(`#qtext_${i}`));
+    q.options.forEach((_, j) => renderEl(card.querySelector(`#optlabel_${i}_${j}`)));
+  });
+}
+
+function answer(qi, choice) {
+  if (attempted.has(qi)) return;
+  attempted.add(qi);
+  const q = questions[qi];
+  const isCorrect = choice === q.answer;
+  if (isCorrect) correct.add(qi);
+  document.querySelectorAll(`[id^="opt_${qi}_"]`).forEach(b => b.style.pointerEvents = 'none');
+  document.getElementById(`opt_${qi}_${choice}`).classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) document.getElementById(`opt_${qi}_${q.answer}`).classList.add('correct');
+  const expEl = document.getElementById(`exp_${qi}`);
+  expEl.textContent = q.explanation;
+  expEl.style.display = 'block';
+  renderEl(expEl);
+  updateScore();
+}
+
+function updateScore() {
+  document.getElementById('scoreCorrect').textContent = correct.size;
+  document.getElementById('scoreAttempted').textContent = attempted.size;
+  document.getElementById('scorePercent').textContent = attempted.size > 0
+    ? Math.round(correct.size / attempted.size * 100) + '%' : '—';
+}
+
+function resetQuiz() {
+  attempted.clear(); correct.clear(); updateScore(); renderQuestions();
+}
+
+/* ===== INIT ===== */
+renderQuestions();
+window.addEventListener('load', () => setTimeout(drawCoordCanvas, 150));
+window.addEventListener('resize', drawCoordCanvas);
+</script>
+</body>
+</html>
