@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graphing Functions Study Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Instrument Sans',sans-serif;background:#f8f7f4;color:#1a1a18;min-height:100vh}
+  .header{background:#1a1a18;color:#f8f7f4;padding:2rem 2.5rem 1.5rem;display:flex;justify-content:space-between;align-items:flex-end}
+  .header h1{font-family:'DM Serif Display',serif;font-size:2rem;font-weight:400;letter-spacing:-0.5px}
+  .header p{font-size:0.8rem;color:#a0a09a;margin-top:0.25rem}
+  .print-btn{background:#f8f7f4;color:#1a1a18;border:none;padding:0.5rem 1.1rem;font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:500;cursor:pointer;border-radius:4px;display:flex;align-items:center;gap:6px;transition:background 0.15s}
+  .print-btn:hover{background:#ddd}
+  .tabs{display:flex;gap:0;background:#1a1a18;padding:0 2.5rem;border-bottom:1px solid #333}
+  .tab-btn{background:none;border:none;color:#a0a09a;font-family:'Instrument Sans',sans-serif;font-size:0.78rem;font-weight:500;padding:0.7rem 1.1rem;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.15s;letter-spacing:0.3px;white-space:nowrap}
+  .tab-btn.active{color:#f8f7f4;border-bottom-color:#c9b97a}
+  .tab-btn:hover:not(.active){color:#d0d0c8}
+  .content{padding:2rem 2.5rem;max-width:960px}
+  .function-intro{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:2rem;align-items:start}
+  .info-card{background:#fff;border:0.5px solid #d8d8d0;border-radius:10px;padding:1.4rem 1.6rem}
+  .info-card h2{font-family:'DM Serif Display',serif;font-size:1.3rem;font-weight:400;margin-bottom:1rem;color:#1a1a18}
+  .equation-block{background:#f0efe9;border-radius:8px;padding:0.8rem 1.1rem;margin:0.6rem 0;display:flex;justify-content:space-between;align-items:center}
+  .eq-label{font-size:0.72rem;color:#888;text-transform:uppercase;letter-spacing:0.6px;font-weight:500}
+  .eq-value{font-family:'DM Mono',monospace;font-size:1.05rem;font-weight:500;color:#1a1a18}
+  .key-features h3{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.6px;color:#888;margin:1rem 0 0.5rem;font-weight:500}
+  .feature-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+  .feature-list li{font-size:0.85rem;color:#444;display:flex;align-items:start;gap:8px;line-height:1.5}
+  .feature-list li::before{content:"·";color:#c9b97a;font-weight:700;flex-shrink:0;margin-top:0px}
+  .graph-card{background:#fff;border:0.5px solid #d8d8d0;border-radius:10px;padding:1.4rem;display:flex;flex-direction:column;align-items:center}
+  .graph-card h2{font-family:'DM Serif Display',serif;font-size:1.3rem;font-weight:400;margin-bottom:1rem;align-self:flex-start}
+  .transform-table{width:100%;margin-top:1rem}
+  .transform-table table{width:100%;border-collapse:collapse;font-size:0.82rem}
+  .transform-table th{background:#f0efe9;padding:0.5rem 0.8rem;text-align:left;font-weight:500;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;color:#666;border-bottom:1px solid #e0dfd8}
+  .transform-table td{padding:0.45rem 0.8rem;border-bottom:0.5px solid #ececea;color:#333;font-size:0.83rem}
+  .transform-table tr:last-child td{border-bottom:none}
+  .examples-section{margin-top:2rem}
+  .examples-section h2{font-family:'DM Serif Display',serif;font-size:1.4rem;font-weight:400;margin-bottom:1.2rem}
+  .examples-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .example-card{background:#fff;border:0.5px solid #d8d8d0;border-radius:10px;padding:1.4rem 1.6rem}
+  .example-badge{display:inline-block;background:#1a1a18;color:#f8f7f4;font-size:0.68rem;font-weight:500;letter-spacing:0.5px;padding:3px 10px;border-radius:3px;margin-bottom:0.8rem}
+  .example-eq{font-family:'DM Mono',monospace;font-size:1.05rem;font-weight:500;margin-bottom:0.5rem}
+  .example-steps{display:flex;flex-direction:column;gap:4px;margin-top:0.7rem}
+  .step{display:flex;gap:10px;font-size:0.82rem;color:#444;line-height:1.5}
+  .step-num{background:#c9b97a;color:#fff;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:600;flex-shrink:0;margin-top:2px}
+  .example-graph-wrap{display:flex;justify-content:center;margin-top:0.8rem}
+  svg text{font-family:'Instrument Sans',sans-serif}
+  @media print{
+    .tabs,.print-btn{display:none!important}
+    .tab-panel{display:block!important}
+    .tab-panel+.tab-panel{page-break-before:always}
+    body{background:#fff}
+    .header{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .example-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>Graphing Functions</h1>
+    <p>Parent functions · Transformations · Examples</p>
+  </div>
+  <button class="print-btn" onclick="window.print()">⎙ Print / Save PDF</button>
+</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab-btn active" onclick="showTab('abs',this)">Absolute Value</button>
+  <button class="tab-btn" onclick="showTab('sqrt',this)">Square Root</button>
+  <button class="tab-btn" onclick="showTab('exp',this)">Exponential</button>
+  <button class="tab-btn" onclick="showTab('quad',this)">Quadratic</button>
+  <button class="tab-btn" onclick="showTab('cube',this)">Cube Root</button>
+</div>
+
+<!-- ===== ABSOLUTE VALUE ===== -->
+<div class="tab-panel" id="tab-abs">
+<div class="content">
+  <div class="function-intro">
+    <div class="info-card">
+      <h2>Absolute Value</h2>
+      <div class="equation-block"><span class="eq-label">Parent</span><span class="eq-value">f(x) = |x|</span></div>
+      <div class="equation-block"><span class="eq-label">General</span><span class="eq-value">f(x) = a|x − h| + k</span></div>
+      <div class="key-features">
+        <h3>Parameter Effects</h3>
+        <ul class="feature-list">
+          <li><strong>a &gt; 0</strong> opens upward; <strong>a &lt; 0</strong> opens downward</li>
+          <li>|a| &gt; 1 narrows; 0 &lt; |a| &lt; 1 widens</li>
+          <li><strong>h</strong> shifts the vertex horizontally (right if positive)</li>
+          <li><strong>k</strong> shifts the vertex vertically (up if positive)</li>
+          <li>Vertex is at <strong>(h, k)</strong></li>
+          <li>Domain: all real numbers</li>
+          <li>Range: [k, ∞) if a &gt; 0; (−∞, k] if a &lt; 0</li>
+        </ul>
+      </div>
+    </div>
+    <div class="graph-card">
+      <h2>Parent Graph: f(x) = |x|</h2>
+      <svg viewBox="-80 -80 160 170" width="200" height="200">
+        <line x1="-75" y1="0" x2="75" y2="0" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="0" y1="-75" x2="0" y2="85" stroke="#ccc" stroke-width="0.5"/>
+        <text x="78" y="4" font-size="8" fill="#999">x</text>
+        <text x="-6" y="-78" font-size="8" fill="#999">y</text>
+        <g opacity="0.15"><line x1="-60" y1="-20" x2="60" y2="-20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="-60" y1="-40" x2="60" y2="-40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="-60" y1="-60" x2="60" y2="-60" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="-60" y1="20" x2="60" y2="20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="-60" y1="40" x2="60" y2="40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="-20" y1="-75" x2="-20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="20" y1="-75" x2="20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="40" y1="-75" x2="40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="-40" y1="-75" x2="-40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="60" y1="-75" x2="60" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        <line x1="-60" y1="-75" x2="-60" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/></g>
+        <polyline points="-65,65 0,0 65,65" fill="none" stroke="#c9b97a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="0" cy="0" r="3" fill="#c9b97a"/>
+        <text x="5" y="-4" font-size="8" fill="#888">(0,0) vertex</text>
+        <text x="-8" y="90" font-size="7" fill="#aaa" text-anchor="middle">each unit → V shape</text>
+      </svg>
+      <div class="transform-table">
+        <table>
+          <tr><th>Parameter</th><th>Effect on Graph</th></tr>
+          <tr><td>a = 2</td><td>Narrower V (steeper)</td></tr>
+          <tr><td>a = ½</td><td>Wider V (shallower)</td></tr>
+          <tr><td>a = −1</td><td>Flips upside down ∧</td></tr>
+          <tr><td>h = 3</td><td>Vertex shifts right 3</td></tr>
+          <tr><td>k = −2</td><td>Vertex shifts down 2</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="examples-section">
+    <h2>Worked Examples</h2>
+    <div class="examples-grid">
+      <div class="example-card">
+        <span class="example-badge">Example 1</span>
+        <div class="example-eq">f(x) = 2|x − 3| + 1</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>Identify a = 2, h = 3, k = 1</span></div>
+          <div class="step"><span class="step-num">2</span><span>Vertex: (3, 1) — shift right 3, up 1</span></div>
+          <div class="step"><span class="step-num">3</span><span>a = 2 &gt; 0 → opens upward, narrower</span></div>
+          <div class="step"><span class="step-num">4</span><span>Range: [1, ∞); Domain: all reals</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-10 -10 130 100" width="190" height="150">
+            <line x1="0" y1="85" x2="0" y2="0" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="0" y1="85" x2="125" y2="85" stroke="#ccc" stroke-width="0.5"/>
+            <text x="127" y="88" font-size="7" fill="#aaa">x</text>
+            <text x="-2" y="-2" font-size="7" fill="#aaa">y</text>
+            <g font-size="6" fill="#bbb">
+              <text x="20" y="91">1</text><text x="40" y="91">2</text><text x="60" y="91">3</text>
+              <text x="80" y="91">4</text><text x="100" y="91">5</text>
+              <text x="-8" y="68">1</text><text x="-8" y="48">2</text><text x="-8" y="28">3</text><text x="-8" y="8">4</text>
+            </g>
+            <polyline points="0,5 60,75 120,5" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="60" cy="75" r="3" fill="#c9b97a"/>
+            <text x="64" y="72" font-size="7" fill="#888">(3,1)</text>
+          </svg>
+        </div>
+      </div>
+      <div class="example-card">
+        <span class="example-badge">Example 2</span>
+        <div class="example-eq">f(x) = −|x + 2| − 1</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>Identify a = −1, h = −2, k = −1</span></div>
+          <div class="step"><span class="step-num">2</span><span>Vertex: (−2, −1) — shift left 2, down 1</span></div>
+          <div class="step"><span class="step-num">3</span><span>a = −1 &lt; 0 → opens downward (∧ shape)</span></div>
+          <div class="step"><span class="step-num">4</span><span>Range: (−∞, −1]; Domain: all reals</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-10 -10 130 110" width="190" height="150">
+            <line x1="0" y1="0" x2="0" y2="105" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="0" y1="55" x2="125" y2="55" stroke="#ccc" stroke-width="0.5"/>
+            <text x="127" y="58" font-size="7" fill="#aaa">x</text>
+            <text x="-2" y="-2" font-size="7" fill="#aaa">y</text>
+            <g font-size="6" fill="#bbb">
+              <text x="20" y="61">1</text><text x="40" y="61">2</text><text x="60" y="61">3</text>
+              <text x="-14" y="61">−1</text><text x="-14" y="41">0</text><text x="-14" y="81">−2</text>
+            </g>
+            <polyline points="0,35 40,75 80,35" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="80,35 120,75" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="75" r="3" fill="#c9b97a"/>
+            <text x="44" y="73" font-size="7" fill="#888">(−2,−1)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== SQUARE ROOT ===== -->
+<div class="tab-panel" id="tab-sqrt" style="display:none">
+<div class="content">
+  <div class="function-intro">
+    <div class="info-card">
+      <h2>Square Root</h2>
+      <div class="equation-block"><span class="eq-label">Parent</span><span class="eq-value">f(x) = √x</span></div>
+      <div class="equation-block"><span class="eq-label">General</span><span class="eq-value">f(x) = a√(x − h) + k</span></div>
+      <div class="key-features">
+        <h3>Parameter Effects</h3>
+        <ul class="feature-list">
+          <li><strong>a &gt; 0</strong> curves upward; <strong>a &lt; 0</strong> reflects over x-axis</li>
+          <li>|a| &gt; 1 stretches vertically; 0 &lt; |a| &lt; 1 compresses</li>
+          <li><strong>h</strong> shifts the starting point horizontally</li>
+          <li><strong>k</strong> shifts the starting point vertically</li>
+          <li>Starting point (endpoint): <strong>(h, k)</strong></li>
+          <li>Domain: x ≥ h (requires x − h ≥ 0)</li>
+          <li>Range: [k, ∞) if a &gt; 0; (−∞, k] if a &lt; 0</li>
+        </ul>
+      </div>
+    </div>
+    <div class="graph-card">
+      <h2>Parent Graph: f(x) = √x</h2>
+      <svg viewBox="-20 -80 160 170" width="200" height="200">
+        <line x1="-15" y1="0" x2="135" y2="0" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="0" y1="-75" x2="0" y2="85" stroke="#ccc" stroke-width="0.5"/>
+        <text x="138" y="4" font-size="8" fill="#999">x</text>
+        <text x="-6" y="-78" font-size="8" fill="#999">y</text>
+        <g opacity="0.15">
+          <line x1="20" y1="-75" x2="20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="40" y1="-75" x2="40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="60" y1="-75" x2="60" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="80" y1="-75" x2="80" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="100" y1="-75" x2="100" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-15" y1="-60" x2="135" y2="-60" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-15" y1="-40" x2="135" y2="-40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-15" y1="-20" x2="135" y2="-20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-15" y1="20" x2="135" y2="20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-15" y1="40" x2="135" y2="40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-15" y1="60" x2="135" y2="60" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        </g>
+        <path d="M0,0 Q30,-18 60,-28 Q90,-37 120,-46" fill="none" stroke="#c9b97a" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="0" cy="0" r="3" fill="#c9b97a"/>
+        <text x="5" y="-4" font-size="8" fill="#888">(0,0)</text>
+        <text x="62" y="-30" font-size="7" fill="#c9b97a">√x</text>
+      </svg>
+      <div class="transform-table">
+        <table>
+          <tr><th>Parameter</th><th>Effect on Graph</th></tr>
+          <tr><td>a = 3</td><td>Stretch — rises faster</td></tr>
+          <tr><td>a = ¼</td><td>Compress — rises slower</td></tr>
+          <tr><td>a = −1</td><td>Reflects below x-axis</td></tr>
+          <tr><td>h = 4</td><td>Start point shifts right 4</td></tr>
+          <tr><td>k = −2</td><td>Start point shifts down 2</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="examples-section">
+    <h2>Worked Examples</h2>
+    <div class="examples-grid">
+      <div class="example-card">
+        <span class="example-badge">Example 1</span>
+        <div class="example-eq">f(x) = √(x − 4) + 2</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>a = 1, h = 4, k = 2</span></div>
+          <div class="step"><span class="step-num">2</span><span>Starting point: (4, 2)</span></div>
+          <div class="step"><span class="step-num">3</span><span>Domain: x ≥ 4 · Range: y ≥ 2</span></div>
+          <div class="step"><span class="step-num">4</span><span>No stretch/compress; opens normally</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-5 -5 135 100" width="190" height="140">
+            <line x1="0" y1="90" x2="130" y2="90" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="0" y2="90" stroke="#ccc" stroke-width="0.5"/>
+            <g font-size="6" fill="#bbb">
+              <text x="20" y="97">1</text><text x="40" y="97">2</text><text x="60" y="97">3</text>
+              <text x="80" y="97">4</text><text x="100" y="97">5</text><text x="118" y="97">6</text>
+              <text x="-10" y="71">1</text><text x="-10" y="51">2</text><text x="-10" y="31">3</text><text x="-10" y="11">4</text>
+            </g>
+            <path d="M80,50 Q95,36 110,27 Q120,22 128,18" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="80" cy="50" r="3" fill="#c9b97a"/>
+            <text x="83" y="48" font-size="7" fill="#888">(4,2)</text>
+          </svg>
+        </div>
+      </div>
+      <div class="example-card">
+        <span class="example-badge">Example 2</span>
+        <div class="example-eq">f(x) = −2√(x + 1) + 3</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>a = −2, h = −1, k = 3</span></div>
+          <div class="step"><span class="step-num">2</span><span>Starting point: (−1, 3)</span></div>
+          <div class="step"><span class="step-num">3</span><span>a &lt; 0 → reflects down; |a|=2 → steeper</span></div>
+          <div class="step"><span class="step-num">4</span><span>Domain: x ≥ −1 · Range: y ≤ 3</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-10 -5 135 105" width="190" height="140">
+            <line x1="-5" y1="90" x2="130" y2="90" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="0" y2="95" stroke="#ccc" stroke-width="0.5"/>
+            <g font-size="6" fill="#bbb">
+              <text x="20" y="97">1</text><text x="40" y="97">2</text><text x="60" y="97">3</text>
+              <text x="-14" y="97">−1</text>
+              <text x="-10" y="73">1</text><text x="-10" y="53">2</text><text x="-10" y="33">3</text><text x="-10" y="13">4</text>
+            </g>
+            <path d="M0,30 Q20,55 40,70 Q70,83 100,91" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="0" cy="30" r="3" fill="#c9b97a"/>
+            <text x="4" y="28" font-size="7" fill="#888">(−1,3)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== EXPONENTIAL ===== -->
+<div class="tab-panel" id="tab-exp" style="display:none">
+<div class="content">
+  <div class="function-intro">
+    <div class="info-card">
+      <h2>Exponential</h2>
+      <div class="equation-block"><span class="eq-label">Parent</span><span class="eq-value">f(x) = bˣ (b &gt; 0, b ≠ 1)</span></div>
+      <div class="equation-block"><span class="eq-label">General</span><span class="eq-value">f(x) = a · b^(x−h) + k</span></div>
+      <div class="key-features">
+        <h3>Parameter Effects</h3>
+        <ul class="feature-list">
+          <li><strong>b &gt; 1</strong> → exponential growth (rises right)</li>
+          <li><strong>0 &lt; b &lt; 1</strong> → exponential decay (falls right)</li>
+          <li><strong>a &gt; 0</strong> same side as parent; <strong>a &lt; 0</strong> reflects over asymptote</li>
+          <li><strong>h</strong> shifts the graph horizontally</li>
+          <li><strong>k</strong> sets the horizontal asymptote y = k</li>
+          <li>Domain: all real numbers</li>
+          <li>Range: (k, ∞) if a &gt; 0; (−∞, k) if a &lt; 0</li>
+        </ul>
+      </div>
+    </div>
+    <div class="graph-card">
+      <h2>Parent Graph: f(x) = 2ˣ</h2>
+      <svg viewBox="-80 -80 160 170" width="200" height="200">
+        <line x1="-75" y1="0" x2="75" y2="0" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="0" y1="-75" x2="0" y2="85" stroke="#ccc" stroke-width="0.5"/>
+        <text x="78" y="4" font-size="8" fill="#999">x</text>
+        <text x="-6" y="-78" font-size="8" fill="#999">y</text>
+        <line x1="-75" y1="80" x2="75" y2="80" stroke="#ccc" stroke-width="0.5" stroke-dasharray="3,2"/>
+        <text x="-72" y="78" font-size="7" fill="#bbb">y=0 asymptote</text>
+        <g opacity="0.15">
+          <line x1="-60" y1="-60" x2="60" y2="-60" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="-40" x2="60" y2="-40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="-20" x2="60" y2="-20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="20" x2="60" y2="20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="40" x2="60" y2="40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="60" x2="60" y2="60" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-40" y1="-75" x2="-40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-20" y1="-75" x2="-20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="20" y1="-75" x2="20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="40" y1="-75" x2="40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        </g>
+        <path d="M-70,76 Q-40,72 -20,60 Q0,40 10,20 Q20,-10 30,-45 Q35,-62 40,-75" fill="none" stroke="#c9b97a" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="0" cy="40" r="3" fill="#c9b97a"/>
+        <text x="5" y="38" font-size="8" fill="#888">(0,1)</text>
+      </svg>
+      <div class="transform-table">
+        <table>
+          <tr><th>Parameter</th><th>Effect on Graph</th></tr>
+          <tr><td>b = 3</td><td>Grows faster than b=2</td></tr>
+          <tr><td>b = ½</td><td>Decay — falls to the right</td></tr>
+          <tr><td>k = 2</td><td>Asymptote rises to y = 2</td></tr>
+          <tr><td>h = −3</td><td>Shifts entire graph left 3</td></tr>
+          <tr><td>a = −1</td><td>Reflects over asymptote</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="examples-section">
+    <h2>Worked Examples</h2>
+    <div class="examples-grid">
+      <div class="example-card">
+        <span class="example-badge">Example 1</span>
+        <div class="example-eq">f(x) = 2^(x−1) + 3</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>a = 1, b = 2, h = 1, k = 3</span></div>
+          <div class="step"><span class="step-num">2</span><span>Asymptote: y = 3</span></div>
+          <div class="step"><span class="step-num">3</span><span>Key point: (1, 4) since 2⁰ + 3 = 4</span></div>
+          <div class="step"><span class="step-num">4</span><span>Growth; Domain all reals; Range (3, ∞)</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-10 -5 140 115" width="190" height="145">
+            <line x1="0" y1="0" x2="0" y2="108" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="-5" y1="108" x2="135" y2="108" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="-5" y1="68" x2="135" y2="68" stroke="#bbb" stroke-width="0.8" stroke-dasharray="4,3"/>
+            <text x="108" y="65" font-size="7" fill="#bbb">y = 3</text>
+            <g font-size="6" fill="#bbb">
+              <text x="20" y="115">1</text><text x="40" y="115">2</text><text x="60" y="115">3</text>
+              <text x="-14" y="111">0</text><text x="-14" y="91">1</text><text x="-14" y="71">2</text><text x="-14" y="51">3</text><text x="-14" y="31">4</text><text x="-14" y="11">5</text>
+            </g>
+            <path d="M-5,65 Q10,64 30,63 Q50,60 60,55 Q75,45 85,30 Q100,12 115,3" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="58" r="3" fill="#c9b97a"/>
+            <text x="24" y="56" font-size="7" fill="#888">(1,4)</text>
+          </svg>
+        </div>
+      </div>
+      <div class="example-card">
+        <span class="example-badge">Example 2</span>
+        <div class="example-eq">f(x) = 3·(½)^x − 2</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>a = 3, b = ½, h = 0, k = −2</span></div>
+          <div class="step"><span class="step-num">2</span><span>Asymptote: y = −2 (decay toward it)</span></div>
+          <div class="step"><span class="step-num">3</span><span>y-intercept: (0, 1) since 3·1 − 2 = 1</span></div>
+          <div class="step"><span class="step-num">4</span><span>Decay; Domain all reals; Range (−2, ∞)</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-10 -5 140 115" width="190" height="145">
+            <line x1="0" y1="0" x2="0" y2="108" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="-5" y1="108" x2="135" y2="108" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="-5" y1="88" x2="135" y2="88" stroke="#bbb" stroke-width="0.8" stroke-dasharray="4,3"/>
+            <text x="108" y="85" font-size="7" fill="#bbb">y = −2</text>
+            <g font-size="6" fill="#bbb">
+              <text x="20" y="115">1</text><text x="40" y="115">2</text><text x="60" y="115">3</text>
+              <text x="-14" y="108">−2</text><text x="-14" y="88">−1</text><text x="-14" y="68">0</text><text x="-14" y="48">1</text><text x="-14" y="28">2</text><text x="-14" y="8">3</text>
+            </g>
+            <path d="M-8,10 Q0,28 20,48 Q40,65 60,76 Q80,83 100,86 Q120,87.5 135,88" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="0" cy="48" r="3" fill="#c9b97a"/>
+            <text x="4" y="46" font-size="7" fill="#888">(0,1)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== QUADRATIC ===== -->
+<div class="tab-panel" id="tab-quad" style="display:none">
+<div class="content">
+  <div class="function-intro">
+    <div class="info-card">
+      <h2>Quadratic</h2>
+      <div class="equation-block"><span class="eq-label">Parent</span><span class="eq-value">f(x) = x²</span></div>
+      <div class="equation-block"><span class="eq-label">General</span><span class="eq-value">f(x) = a(x − h)² + k</span></div>
+      <div class="key-features">
+        <h3>Parameter Effects</h3>
+        <ul class="feature-list">
+          <li><strong>a &gt; 0</strong> opens upward (∪); <strong>a &lt; 0</strong> opens downward (∩)</li>
+          <li>|a| &gt; 1 narrows the parabola; 0 &lt; |a| &lt; 1 widens it</li>
+          <li><strong>h</strong> shifts the vertex horizontally</li>
+          <li><strong>k</strong> shifts the vertex vertically</li>
+          <li>Vertex: <strong>(h, k)</strong> — maximum or minimum</li>
+          <li>Axis of symmetry: x = h</li>
+          <li>Domain: all real numbers</li>
+          <li>Range: [k, ∞) if a &gt; 0; (−∞, k] if a &lt; 0</li>
+        </ul>
+      </div>
+    </div>
+    <div class="graph-card">
+      <h2>Parent Graph: f(x) = x²</h2>
+      <svg viewBox="-80 -80 160 170" width="200" height="200">
+        <line x1="-75" y1="0" x2="75" y2="0" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="0" y1="-75" x2="0" y2="85" stroke="#ccc" stroke-width="0.5"/>
+        <text x="78" y="4" font-size="8" fill="#999">x</text>
+        <text x="-6" y="-78" font-size="8" fill="#999">y</text>
+        <g opacity="0.15">
+          <line x1="-60" y1="-60" x2="60" y2="-60" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="-40" x2="60" y2="-40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="-20" x2="60" y2="-20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="20" x2="60" y2="20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="40" x2="60" y2="40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-40" y1="-75" x2="-40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-20" y1="-75" x2="-20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="20" y1="-75" x2="20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="40" y1="-75" x2="40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        </g>
+        <path d="M-60,-70 Q-40,-35 -20,-10 Q0,5 0,5 Q0,5 20,-10 Q40,-35 60,-70" fill="none" stroke="#c9b97a" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="0" cy="5" r="3" fill="#c9b97a"/>
+        <text x="5" y="3" font-size="8" fill="#888">(0,0)</text>
+        <line x1="0" y1="-75" x2="0" y2="85" stroke="#c9b97a" stroke-width="0.6" stroke-dasharray="3,2" opacity="0.4"/>
+        <text x="3" y="80" font-size="7" fill="#c9b97a" opacity="0.7">x=0</text>
+      </svg>
+      <div class="transform-table">
+        <table>
+          <tr><th>Parameter</th><th>Effect on Graph</th></tr>
+          <tr><td>a = 3</td><td>Narrower parabola</td></tr>
+          <tr><td>a = ⅓</td><td>Wider parabola</td></tr>
+          <tr><td>a = −2</td><td>Opens downward, narrow</td></tr>
+          <tr><td>h = −4</td><td>Vertex shifts left 4</td></tr>
+          <tr><td>k = 5</td><td>Vertex shifts up 5</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="examples-section">
+    <h2>Worked Examples</h2>
+    <div class="examples-grid">
+      <div class="example-card">
+        <span class="example-badge">Example 1</span>
+        <div class="example-eq">f(x) = (x − 2)² − 3</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>a = 1, h = 2, k = −3</span></div>
+          <div class="step"><span class="step-num">2</span><span>Vertex: (2, −3); Axis: x = 2</span></div>
+          <div class="step"><span class="step-num">3</span><span>a = 1 &gt; 0 → opens upward, standard width</span></div>
+          <div class="step"><span class="step-num">4</span><span>Range: [−3, ∞); Domain: all reals</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-20 -5 140 115" width="190" height="140">
+            <line x1="-15" y1="108" x2="135" y2="108" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="0" y2="110" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="60" y1="0" x2="60" y2="108" stroke="#c9b97a" stroke-width="0.6" stroke-dasharray="3,2" opacity="0.4"/>
+            <g font-size="6" fill="#bbb">
+              <text x="20" y="115">1</text><text x="40" y="115">2</text><text x="60" y="115">3</text><text x="80" y="115">4</text>
+              <text x="-18" y="108">−3</text><text x="-18" y="88">−2</text><text x="-18" y="68">−1</text><text x="-10" y="48">0</text><text x="-10" y="28">1</text><text x="-10" y="8">2</text>
+            </g>
+            <path d="M10,28 Q30,80 60,98 Q90,80 110,28" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="60" cy="98" r="3" fill="#c9b97a"/>
+            <text x="64" y="96" font-size="7" fill="#888">(2,−3)</text>
+          </svg>
+        </div>
+      </div>
+      <div class="example-card">
+        <span class="example-badge">Example 2</span>
+        <div class="example-eq">f(x) = −½(x + 1)² + 4</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>a = −½, h = −1, k = 4</span></div>
+          <div class="step"><span class="step-num">2</span><span>Vertex: (−1, 4); Axis: x = −1</span></div>
+          <div class="step"><span class="step-num">3</span><span>a &lt; 0 → opens downward; |a| &lt; 1 → wider</span></div>
+          <div class="step"><span class="step-num">4</span><span>Range: (−∞, 4]; Domain: all reals</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-30 -5 140 115" width="190" height="140">
+            <line x1="-25" y1="108" x2="115" y2="108" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="0" y2="110" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="20" y1="0" x2="20" y2="108" stroke="#c9b97a" stroke-width="0.6" stroke-dasharray="3,2" opacity="0.4"/>
+            <g font-size="6" fill="#bbb">
+              <text x="-28" y="115">−3</text><text x="-12" y="115">−2</text><text x="4" y="115">−1</text>
+              <text x="20" y="115">0</text><text x="40" y="115">1</text><text x="60" y="115">2</text>
+              <text x="-28" y="108">0</text><text x="-28" y="88">1</text><text x="-28" y="68">2</text><text x="-28" y="48">3</text><text x="-28" y="28">4</text>
+            </g>
+            <path d="M-25,88 Q0,22 20,8 Q40,22 65,88" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="8" r="3" fill="#c9b97a"/>
+            <text x="24" y="7" font-size="7" fill="#888">(−1,4)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===== CUBE ROOT ===== -->
+<div class="tab-panel" id="tab-cube" style="display:none">
+<div class="content">
+  <div class="function-intro">
+    <div class="info-card">
+      <h2>Cube Root</h2>
+      <div class="equation-block"><span class="eq-label">Parent</span><span class="eq-value">f(x) = ∛x</span></div>
+      <div class="equation-block"><span class="eq-label">General</span><span class="eq-value">f(x) = a·∛(x − h) + k</span></div>
+      <div class="key-features">
+        <h3>Parameter Effects</h3>
+        <ul class="feature-list">
+          <li><strong>a &gt; 0</strong> rises left to right; <strong>a &lt; 0</strong> reflects (falls left to right)</li>
+          <li>|a| &gt; 1 stretches vertically; 0 &lt; |a| &lt; 1 compresses</li>
+          <li><strong>h</strong> shifts the inflection point horizontally</li>
+          <li><strong>k</strong> shifts the inflection point vertically</li>
+          <li>Inflection/center point: <strong>(h, k)</strong></li>
+          <li>Domain: all real numbers (can take cube root of negatives!)</li>
+          <li>Range: all real numbers</li>
+        </ul>
+      </div>
+    </div>
+    <div class="graph-card">
+      <h2>Parent Graph: f(x) = ∛x</h2>
+      <svg viewBox="-80 -80 160 170" width="200" height="200">
+        <line x1="-75" y1="0" x2="75" y2="0" stroke="#ccc" stroke-width="0.5"/>
+        <line x1="0" y1="-75" x2="0" y2="85" stroke="#ccc" stroke-width="0.5"/>
+        <text x="78" y="4" font-size="8" fill="#999">x</text>
+        <text x="-6" y="-78" font-size="8" fill="#999">y</text>
+        <g opacity="0.15">
+          <line x1="-60" y1="-60" x2="60" y2="-60" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="-40" x2="60" y2="-40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="-20" x2="60" y2="-20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="20" x2="60" y2="20" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-60" y1="40" x2="60" y2="40" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-40" y1="-75" x2="-40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="-20" y1="-75" x2="-20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="20" y1="-75" x2="20" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+          <line x1="40" y1="-75" x2="40" y2="85" stroke="#999" stroke-width="0.4" stroke-dasharray="2,2"/>
+        </g>
+        <path d="M-60,47 Q-40,32 -20,16 Q-8,7 0,0 Q8,-7 20,-16 Q40,-32 60,-47" fill="none" stroke="#c9b97a" stroke-width="2.2" stroke-linecap="round"/>
+        <circle cx="0" cy="0" r="3" fill="#c9b97a"/>
+        <text x="5" y="-4" font-size="8" fill="#888">(0,0)</text>
+        <text x="40" y="-52" font-size="7" fill="#c9b97a">∛x</text>
+      </svg>
+      <div class="transform-table">
+        <table>
+          <tr><th>Parameter</th><th>Effect on Graph</th></tr>
+          <tr><td>a = 2</td><td>Steeper S-curve</td></tr>
+          <tr><td>a = ½</td><td>Shallower S-curve</td></tr>
+          <tr><td>a = −1</td><td>Reflects; falls left→right</td></tr>
+          <tr><td>h = 5</td><td>Center shifts right 5</td></tr>
+          <tr><td>k = −3</td><td>Center shifts down 3</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="examples-section">
+    <h2>Worked Examples</h2>
+    <div class="examples-grid">
+      <div class="example-card">
+        <span class="example-badge">Example 1</span>
+        <div class="example-eq">f(x) = ∛(x + 3) − 2</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>a = 1, h = −3, k = −2</span></div>
+          <div class="step"><span class="step-num">2</span><span>Inflection point: (−3, −2)</span></div>
+          <div class="step"><span class="step-num">3</span><span>No stretch; standard S-shape, shifted</span></div>
+          <div class="step"><span class="step-num">4</span><span>Domain: all reals · Range: all reals</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-20 -5 140 115" width="190" height="140">
+            <line x1="-15" y1="108" x2="125" y2="108" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="0" y2="110" stroke="#ccc" stroke-width="0.5"/>
+            <g font-size="6" fill="#bbb">
+              <text x="-18" y="115">−4</text><text x="-2" y="115">−3</text><text x="16" y="115">−2</text>
+              <text x="34" y="115">−1</text><text x="54" y="115">0</text><text x="72" y="115">1</text><text x="90" y="115">2</text>
+              <text x="-18" y="108">−4</text><text x="-18" y="88">−3</text><text x="-18" y="68">−2</text><text x="-18" y="48">−1</text><text x="-10" y="28">0</text><text x="-10" y="8">1</text>
+            </g>
+            <path d="M-15,30 Q5,52 20,68 Q35,80 52,88 Q68,94 85,98 Q100,101 115,103" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <path d="M-15,30 Q-12,25 -5,15 Q0,8 8,2" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="68" r="3" fill="#c9b97a"/>
+            <text x="24" y="66" font-size="7" fill="#888">(−3,−2)</text>
+          </svg>
+        </div>
+      </div>
+      <div class="example-card">
+        <span class="example-badge">Example 2</span>
+        <div class="example-eq">f(x) = −2·∛(x − 1) + 1</div>
+        <div class="example-steps">
+          <div class="step"><span class="step-num">1</span><span>a = −2, h = 1, k = 1</span></div>
+          <div class="step"><span class="step-num">2</span><span>Inflection point: (1, 1)</span></div>
+          <div class="step"><span class="step-num">3</span><span>a &lt; 0 → reflects (falls left→right); |a|=2 → steeper</span></div>
+          <div class="step"><span class="step-num">4</span><span>Domain: all reals · Range: all reals</span></div>
+        </div>
+        <div class="example-graph-wrap">
+          <svg viewBox="-10 -5 140 115" width="190" height="140">
+            <line x1="-5" y1="108" x2="135" y2="108" stroke="#ccc" stroke-width="0.5"/>
+            <line x1="0" y1="0" x2="0" y2="110" stroke="#ccc" stroke-width="0.5"/>
+            <g font-size="6" fill="#bbb">
+              <text x="-2" y="115">0</text><text x="20" y="115">1</text><text x="40" y="115">2</text>
+              <text x="60" y="115">3</text><text x="80" y="115">4</text>
+              <text x="-14" y="108">−3</text><text x="-14" y="88">−2</text><text x="-14" y="68">−1</text><text x="-10" y="48">0</text><text x="-10" y="28">1</text><text x="-10" y="8">2</text>
+            </g>
+            <path d="M-5,12 Q5,20 12,28 Q18,34 20,48 Q22,62 30,70 Q50,84 80,92 Q100,97 125,100" fill="none" stroke="#c9b97a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="20" cy="48" r="3" fill="#c9b97a"/>
+            <text x="24" y="46" font-size="7" fill="#888">(1,1)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function showTab(name, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).style.display = 'block';
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
